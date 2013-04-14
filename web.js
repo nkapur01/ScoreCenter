@@ -20,10 +20,10 @@ app.post('/submit.json', function(request, response){
 	var username=request.body.username;
 	var score=request.body.score;
 	var game_title=request.body.game_title;
-	var created_at=request.Date;
+	var created_at=Date();
 	
 	db.collection("highscores", function(error, collection){
-		db.collection.insert({'game_title'=game_title, 'username': username, 'score'=score, 'created_at': created_at});
+		collection.insert({'game_title':game_title, 'username': username, 'score'=score, 'created_at': created_at});
 	});
 	response.set('Content-Type', 'text/html');
 	response.send();
