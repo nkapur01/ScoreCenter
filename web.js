@@ -37,10 +37,8 @@ app.get('/highscores.json', function(request, response) {
 	
 	db.collection('highscores', function(error, collection){
 		collection.find({'game_title':game_title}.toArray(function err, documents){
-			document.sort(function(a,b){
-				return(b-a);
-			});	
-			
+			console.log("hi");
+			document.sort(function(a,b), return(b-a));
 		});
 	});
 
