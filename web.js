@@ -23,7 +23,7 @@ app.post('/submit.json', function(request, response){
 	var created_at=Date();
 	
 	db.collection("highscores", function(error, collection){
-		collection.insert({'game_title':game_title, 'username': username, 'score'=score, 'created_at': created_at});
+		collection.insert({'game_title':game_title, 'username': username, 'score':score, 'created_at': created_at});
 	});
 	response.set('Content-Type', 'text/html');
 	response.send();
