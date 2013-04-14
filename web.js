@@ -14,8 +14,8 @@ var db = mongo.Db.connect(mongoUri, function (error, databaseConnection) {
 });
 
 app.post('/submit.json', function(request, response){
-	response.header['Access-Control-Allow-Origin', '*'];
-	request.header['Access-Control-Allow-Headers', 'X-Requested-With'];
+	response.header('Access-Control-Allow-Origin', '*');
+	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
 	var username=request.body.username;
 	var score=request.body.score;
