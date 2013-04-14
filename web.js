@@ -29,6 +29,25 @@ app.post('/submit.json', function(request, response){
 	response.send();
 });
 
+app.get('/highscores.json', function(request, response) {
+	response.header('Access-Control-Allow-Origin','*');
+	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+	
+	var game_title=request.query('game_title');
+	
+	db.collection('highscores', function(error, collection){
+		collection.find({'game_title':game_title}.toArray(function err, documents){
+			document.sort(function(a,b){
+				return(b-a);
+			});	
+			
+		});
+	});
+
+	response.set('Content-Type', 'text/json');
+	response.send('{"status":"good"}');
+});
+
 app.get('/', function (request, response) {
 	/*
 		db.collection('NAME_OF_YOUR_COLLECTON_HERE...', function(er, collection) {
@@ -36,11 +55,6 @@ app.get('/', function (request, response) {
 	*/
 	response.set('Content-Type', 'text/html');
 	response.send('game_title</br>username</br>score</br><created_at');
-});
-
-app.get('/highscores.json', function(request, response) {
-	response.set('Content-Type', 'text/json');
-	response.send('{"status":"good"}');
 });
 
 app.get('/usersearch', function(request, response){
