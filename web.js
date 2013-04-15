@@ -30,14 +30,13 @@ app.post('/submit.json', function(request, response){
 });
 
 app.get('/highscores.json', function(request, response) {
-	response.header('Access-Control-Allow-Origin','*');
+	/*response.header('Access-Control-Allow-Origin','*');
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
 	var game_title=request.query('game_title');
 	
 	db.collection('highscores', function(error, collection){
 		collection.find({'game_title':game_title}.toArray(function err, documents){
-			console.log("hi");
 			document.sort(function(a,b) {
 				// if (a.game_title == b.game_title) {
 // 				
@@ -47,7 +46,7 @@ app.get('/highscores.json', function(request, response) {
 				return b.game_title - a.game_title;
 			});
 		});
-	});
+	});*/
 
 	response.set('Content-Type', 'text/json');
 	response.send('{"status":"good"}');
