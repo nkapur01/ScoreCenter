@@ -33,7 +33,7 @@ app.get('/highscores.json', function(request, response) {
 	 response.header('Access-Control-Allow-Origin','*');
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
-	var game_title=request.QueryString('game_title');
+	var game_title=request.QueryString['game_title'];
 	
 	db.collection('highscores', function(err, collection){
 		collection.find({'game_title':game_title}).toArray(function (err, documents){
