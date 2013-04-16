@@ -37,11 +37,11 @@ app.get('/highscores.json', function(request, response) {
 	
 	db.collection('highscores', function(err, collection){
 		collection.find({'game_title':game_title}.toArray(function err, documents){
-			documents=documents.sort(function(a,b) {
-				 if (a.game_title == b.game_title) {
-				 	return(b.score-a.score);
+			documents.sort(function(a,b) {
+				 if (a['game_title'] == b.['game_title']) {
+				 	return(b.['score']-a.['score']);
 				 else{
-				 	return (a.game_title.localeCompare(b.game_title);
+				 	return (a.['game_title'].localeCompare(b.['game_title']);
 				 }
 			});
 		});
