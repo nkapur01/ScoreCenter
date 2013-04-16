@@ -31,23 +31,17 @@ app.post('/submit.json', function(request, response){
 
 app.get('/highscores.json', function(request, response) {
 	 response.header('Access-Control-Allow-Origin','*');
-	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+	 request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
-	var game_title=request.QueryString['game_title'];
+	var game_title=request.query['game_title'];
+	var score=Number(request.body['score']);
 	
 	db.collection('highscores', function(err, collection){
 		collection.find({'game_title':game_title}).toArray(function (err, documents){
-			documents.sort(function(a,b) {
-				 if (a['game_title'] == b['game_title']) {
-				 	return(b['score']-a['score']);
-				 }
-				 else{
-				 	return (a['game_title'].localeCompare(b['game_title']));
-				}
-			});
-			response.set('Content-Type', 'text/json');
-			response.send(documents);
+			documents.sort({score:-1}).limit(10)
 		});
+		response.set('Content-Type', 'text/json');
+		response.send(documents);
 	});
 });
 
