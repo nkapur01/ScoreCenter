@@ -45,29 +45,13 @@ app.get('/highscores.json', function(request, response) {
 				 	return (a['game_title'].localeCompare(b['game_title']));
 				}
 			});
+			response.set('Content-Type', 'text/json');
+	response.send(documents);
 		});
 	});
-// 
-// //if(a.score>b.score){
-// 
-// // 				 		return -1
-// // 				 	}
-// // 				 	else{
-// // 				 		return 1;
-// // 				 	}
-// // 				 }
-// // 				 else {
-// // 				 	if(a.game_title < b.game_title){
-// // 				 		return -1;
-// // 				 	}
-// // 				 	else {
-// // 				 		return 1;
-// // 				 	}
-// // 				 }
-	
 
-	response.set('Content-Type', 'text/json');
-	response.send('{"status":"good"}');
+
+	
 });
 
 app.get('/', function (request, response) {
