@@ -35,7 +35,7 @@ app.get('/highscores.json', function(request, response) {
 	
 	var game_title=request.query('game_title');
 	
-	db.collection('highscores', function(error, collection){
+	db.collection('highscores', function(err, collection){
 		collection.find({'game_title':game_title}.toArray(function err, documents){
 			documents=documents.sort(function(a,b) {
 				 if (a.game_title == b.game_title) {
