@@ -39,21 +39,27 @@ app.get('/highscores.json', function(request, response) {
 		collection.find({'game_title':game_title}.toArray(function err, documents){
 			documents=documents.sort(function(a,b) {
 				 if (a.game_title == b.game_title) {
-				 	if(a.score>b.score){
-				 		return -1
-				 	}
-				 	else{
-				 		return 1;
-				 	}
+				 	return(b.score-a.score);
+				 else{
+				 	return (a.game_title.localecompare(b.game_title);
 				 }
-				 else {
-				 	if(a.game_title < b.game_title){
-				 		return -1;
-				 	}
-				 	else {
-				 		return 1;
-				 	}
-				 }
+
+//if(a.score>b.score){
+
+// 				 		return -1
+// 				 	}
+// 				 	else{
+// 				 		return 1;
+// 				 	}
+// 				 }
+// 				 else {
+// 				 	if(a.game_title < b.game_title){
+// 				 		return -1;
+// 				 	}
+// 				 	else {
+// 				 		return 1;
+// 				 	}
+// 				 }
 			});
 		});
 	});
