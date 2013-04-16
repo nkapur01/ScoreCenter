@@ -37,11 +37,11 @@ app.get('/highscores.json', function(request, response) {
 	var score=Number(request.body['score']);
 	
 	db.collection('highscores', function(err, collection){
-	var results=collection.find({'game_title':game_title}).toArray();/*{
+	collection.find({'game_title':game_title}).toArray(function(err, documents){});/*{
 			documents.sort({score:-1});
 		});*/
 		response.set('Content-Type', 'text/json');
-		response.send(results);
+		response.send(documents);
 	})
 });
 
