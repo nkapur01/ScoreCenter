@@ -47,17 +47,14 @@ app.get('/highscores.json', function(request, response) {
 });
 
 app.get('/', function (request, response) {
-
-	//var game_title=request.body.game_title;
 	
 	var documents; 
 	
 	db.collection('highscores', function(err, collection){
 	collection.find().toArray(function(err, documents){});
-		
+	});	
 		response.set('Content-Type', 'text/json');
 		response.send(documents);
-	})
 });
 
 
