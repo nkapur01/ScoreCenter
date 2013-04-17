@@ -56,6 +56,8 @@ app.get('/', function (request, response) {
 
 
 app.get('/usersearch', function(request, response){
+	response.header('Access-Control-Allow-Origin','*');
+	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
 	var username=prompt("Please enter the username you'd like to find:");
 	
