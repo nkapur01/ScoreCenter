@@ -48,7 +48,7 @@ app.get('/highscores.json', function(request, response) {
 
 app.get('/', function (request, response) {
 	
-	var documents; 
+	
 	
 	db.collection('highscores', function(err, collection){
 	collection.find().toArray(function(err, documents){});
