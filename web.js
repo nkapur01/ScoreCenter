@@ -37,27 +37,34 @@ app.get('/highscores.json', function(request, response) {
 	var score=Number(request.body.score);
 	
 	db.collection('highscores', function(err, collection){
-	collection.find({'game_title':game_title}).limit(10).toArray(function(err, documents){	
-		console.log(documents);	
-		response.set('Content-Type', 'text/json');
-		response.send(documents);
-		
+		collection.find({'game_title':game_title}).limit(10).toArray(function(err, documents){	
+			console.log(documents);	
+			response.set('Content-Type', 'text/json');
+			response.send(documents);
 		});
 	});
 });
 
 app.get('/', function (request, response) {
 	db.collection('highscores', function(err, collection){
-	collection.find().toArray(function(err, documents){
-		response.set('Content-Type', 'text/json');
-		response.send(documents);
+		collection.find().toArray(function(err, documents){
+			response.set('Content-Type', 'text/json');
+			response.send(documents);
 		});
 	});
 });
 
 
 app.get('/usersearch', function(request, response){
-
+	
+	var username=prompt("Please enter the username you'd like to find:");
+	
+	db.collection('highscores', function(err, collection){
+		collection.find({'username':username}).toArray(function(err, documents){
+			response.set('Content-Type', 'text/json');
+			response.send(documents);
+		});
+	});
 
 });
 
