@@ -46,6 +46,9 @@ app.get('/highscores.json', function(request, response) {
 });
 
 app.get('/', function (request, response) {
+
+	response.header('Access-Control-Allow-Origin','*');
+	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	db.collection('highscores', function(err, collection){
 		collection.find().toArray(function(err, documents){
 			response.set('Content-Type', 'text/json');
