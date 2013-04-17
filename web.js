@@ -37,7 +37,7 @@ app.get('/highscores.json', function(request, response) {
 	//var score=Number(request.body['score']);
 	
 	db.collection('highscores', function(err, collection){
-	collection.find({'game_title':game_title}).sort({score:-1}).limit(10).toArray(function(err, documents){		
+	collection.find({'game_title':game_title}).sort({'score':-1}).limit(10).toArray(function(err, documents){		
 		response.set('Content-Type', 'text/json');
 		response.send(documents);
 		
