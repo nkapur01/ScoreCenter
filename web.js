@@ -30,10 +30,10 @@ app.post('/submit.json', function(request, response){
 });
   
 app.get('/highscores.json', function(request, response) {
-	 response.header('Access-Control-Allow-Origin','*');
+	/* response.header('Access-Control-Allow-Origin','*');
 	 request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
-	/*var game_title=request.query['game_title'];
+	var game_title=request.query['game_title'];
 	var score=Number(request.body['score']);
 	
 	db.collection('highscores', function(err, collection){
