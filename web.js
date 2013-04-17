@@ -30,7 +30,7 @@ app.post('/submit.json', function(request, response){
 });
   
 app.get('/highscores.json', function(request, response) {
-	/* response.header('Access-Control-Allow-Origin','*');
+	response.header('Access-Control-Allow-Origin','*');
 	 request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
 	var game_title=request.query['game_title'];
@@ -38,12 +38,13 @@ app.get('/highscores.json', function(request, response) {
 	
 	db.collection('highscores', function(err, collection){
 	collection.find({'game_title':game_title}).toArray(function(err, documents){
-			documents.sort({score:-1});
-		});
+		documents.sort({score:-1});
 		
 		response.set('Content-Type', 'text/json');
 		response.send(documents);
-	});*/
+		
+		});
+	});
 });
 
 app.get('/', function (request, response) {
