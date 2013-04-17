@@ -31,13 +31,13 @@ app.post('/submit.json', function(request, response){
   
 app.get('/highscores.json', function(request, response) {
 	response.header('Access-Control-Allow-Origin','*');
-	 request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
 	var game_title=request.query['game_title'];
-	//var score=Number(request.body['score']);
+	var score=Number(request.body['score']);
 	
 	db.collection('highscores', function(err, collection){
-	collection.find({'game_title':game_title}).sort({'score':-1}).limit(10).toArray(function(err, documents){		
+	collection.find({'game_title':game_title}).sort({score:-1}).limit(10).toArray(function(err, documents){		
 		response.set('Content-Type', 'text/json');
 		response.send(documents);
 		
@@ -46,9 +46,6 @@ app.get('/highscores.json', function(request, response) {
 });
 
 app.get('/', function (request, response) {
-	
-	
-	
 	db.collection('highscores', function(err, collection){
 	collection.find().toArray(function(err, documents){
 		response.set('Content-Type', 'text/json');
@@ -62,6 +59,7 @@ app.get('/usersearch', function(request, response){
 
 
 });
+
 
 app.get('/fool', function(request, response) {
 	response.set('Content-Type', 'text/html');
