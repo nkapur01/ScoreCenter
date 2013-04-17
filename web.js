@@ -58,9 +58,6 @@ app.get('/', function (request, response) {
 	})
 });
 
-	response.set('Content-Type', 'text/html');
-	response.send('mew');
-});
 
 app.get('/usersearch', function(request, response){
 
