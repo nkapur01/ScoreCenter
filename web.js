@@ -51,10 +51,11 @@ app.get('/', function (request, response) {
 	
 	
 	db.collection('highscores', function(err, collection){
-	collection.find().toArray(function(err, documents){});
-	});	
+	collection.find().toArray(function(err, documents){
 		response.set('Content-Type', 'text/json');
 		response.send(documents);
+		});
+	});
 });
 
 
