@@ -33,24 +33,31 @@ app.get('/highscores.json', function(request, response) {
 	 response.header('Access-Control-Allow-Origin','*');
 	 request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
-	var game_title=request.query['game_title'];
+	/*var game_title=request.query['game_title'];
 	var score=Number(request.body['score']);
 	
 	db.collection('highscores', function(err, collection){
-	documents=collection.find({'game_title':game_title}).toArray(function(err, documents){
-			//documents.sort({score:-1});
+	collection.find({'game_title':game_title}).toArray(function(err, documents){
+			documents.sort({score:-1});
 		});
+		
+		response.set('Content-Type', 'text/json');
+		response.send(documents);
+	});*/
+});
+
+app.get('/', function (request, response) {
+
+	//var game_title=request.body.game_title;
+	
+	db.collection('highscores', function(err, collection){
+	collection.find().toArray(function(err, documents){});
 		
 		response.set('Content-Type', 'text/json');
 		response.send(documents);
 	})
 });
 
-app.get('/', function (request, response) {
-	/*
-		db.collection('NAME_OF_YOUR_COLLECTON_HERE...', function(er, collection) {
-			collection.find()...
-	*/
 	response.set('Content-Type', 'text/html');
 	response.send('mew');
 });
