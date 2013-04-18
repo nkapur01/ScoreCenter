@@ -34,10 +34,10 @@ app.get('/highscores.json', function(request, response) {
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 
 	var game_title=request.query['game_title'];
-	var score=Number(request.body.score);
+	//var score=Number(request.body.score);
 
 	db.collection('highscores', function(err, collection){
-		collection.find({'game_title':game_title}).sort('score':-1).limit(10).toArray(function(err, documents){	
+		collection.find({'game_title':game_title}).sort({score:-1}).limit(10).toArray(function(err, documents){	
 			console.log(documents);	
 			response.set('Content-Type', 'text/json');
 			response.send(documents);
