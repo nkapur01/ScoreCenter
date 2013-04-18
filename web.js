@@ -64,7 +64,7 @@ app.get('/', function (request, response) {
  	console.log("loosah");
  	
  	
- 	request.set('Content-Type', 'text/html');
+ 	//request.set('Content-Type', 'text/html');
  	request.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><form name="search" action="results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>')
  	
  });
