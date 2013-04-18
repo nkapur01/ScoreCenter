@@ -58,32 +58,32 @@ app.get('/', function (request, response) {
 });
 
 
-app.get('/usersearch', function(request, response){
-	response.header('Access-Control-Allow-Origin','*');
-	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
-	console.log("loosah");
-	
-	
-	request.set('Content-Type', 'text/html');
-	request.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><form name="search" action="/results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>')
-	
-});
-
-app.post('/usersearch/results', function(request,response){
-	response.header('Access-Control-Allow-Origin','*');
-	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
-	
-	console.log("mewmew");
-	// var username=response.send(;
+// app.get('/usersearch', function(request, response){
+// 	response.header('Access-Control-Allow-Origin','*');
+// 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+// 	console.log("loosah");
 // 	
-// 	db.collection('highscores', function(err, collection){
-// 		collection.find({'username':username}).toArray(function(err, documents){
-// 			response.set('Content-Type', 'text/json');
-// 			response.send(documents);
-// 		});
-// 	});
-
-});
+// 	
+// 	request.set('Content-Type', 'text/html');
+// 	request.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><form name="search" action="/results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>')
+// 	
+// });
+// 
+// app.post('/usersearch/results', function(request,response){
+// 	response.header('Access-Control-Allow-Origin','*');
+// 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+// 	
+// 	console.log("mewmew");
+// 	// var username=response.send(;
+// // 	
+// // 	db.collection('highscores', function(err, collection){
+// // 		collection.find({'username':username}).toArray(function(err, documents){
+// // 			response.set('Content-Type', 'text/json');
+// // 			response.send(documents);
+// // 		});
+// // 	});
+// 
+// });
 
 
 app.get('/fool', function(request, response) {
