@@ -18,7 +18,7 @@ app.post('/submit.json', function(request, response){
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 
 	var username=request.body.username;
-	var score=request.body.score;
+	var score=Number(request.body.score);
 	var game_title=request.body.game_title;
 	var created_at=Date();
  	
@@ -34,7 +34,6 @@ app.get('/highscores.json', function(request, response) {
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 
 	var game_title=request.query['game_title'];
-	//var score=Number(request.body.score);
 
 	db.collection('highscores', function(err, collection){
 		collection.find({'game_title':game_title}).sort({score:-1}).limit(10).toArray(function(err, documents){	
@@ -73,8 +72,11 @@ app.get('/', function (request, response) {
  	response.header('Access-Control-Allow-Origin','*');
  	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
  
+ 	//db.collection('highscores', function(err, collection){
+ 	//	collection.find({'username':username}).toArray(function(err, documents){
  	request.set('Content-Type', 'text/html');
  	request.send('<h1>lalala</h1>');
+ 	
  });
 
 app.get('/fool', function(request, response) {
