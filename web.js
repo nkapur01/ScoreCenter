@@ -37,7 +37,7 @@ app.get('/highscores.json', function(request, response) {
 	var score=Number(request.body.score);
 	
 	db.collection('highscores', function(err, collection){
-		collection.find({'game_title':game_title}).limit(10).toArray(function(err, documents){	
+		collection.find({'game_title':game_title}).sort(score:-1).limit(10).toArray(function(err, documents){	
 			console.log(documents);	
 			response.set('Content-Type', 'text/json');
 			response.send(documents);
@@ -46,9 +46,9 @@ app.get('/highscores.json', function(request, response) {
 });
 
 app.get('/', function (request, response) {
-
 	response.header('Access-Control-Allow-Origin','*');
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+	
 	db.collection('highscores', function(err, collection){
 		collection.find().toArray(function(err, documents){
 			response.set('Content-Type', 'text/json');
@@ -62,14 +62,25 @@ app.get('/usersearch', function(request, response){
 	response.header('Access-Control-Allow-Origin','*');
 	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
 	
-	var username=prompt("Please enter the username you'd like to find:");
 	
-	db.collection('highscores', function(err, collection){
-		collection.find({'username':username}).toArray(function(err, documents){
-			response.set('Content-Type', 'text/json');
-			response.send(documents);
-		});
-	});
+	request.set('Content-Type', 'text/html');
+	request.send('<!DOCTYPE html><html><head><title>User Search</title><script> function test() {var username=document.getElementById("input").value; }</script></head><body><form name="search" action="http://mighty-citadel-5390.herokuapp.com/usersearch/results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>')
+	
+});
+
+app.post('/usersearch/results', function(request,response){
+	response.header('Access-Control-Allow-Origin','*');
+	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
+	
+	console.log("mewmew");
+	// var username=response.send(;
+// 	
+// 	db.collection('highscores', function(err, collection){
+// 		collection.find({'username':username}).toArray(function(err, documents){
+// 			response.set('Content-Type', 'text/json');
+// 			response.send(documents);
+// 		});
+// 	});
 
 });
 
