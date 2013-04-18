@@ -64,7 +64,7 @@ app.get('/usersearch', function(request, response){
 	
 	
 	request.set('Content-Type', 'text/html');
-	request.send('<!DOCTYPE html><html><head><title>User Search</title><script> function test() {var username=document.getElementById("input").name; }</script></head><body><form name="search" action="http://mighty-citadel-5390.herokuapp.com/usersearch/results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>')
+	request.send('<!DOCTYPE html><html><head><title>User Search</title></head><body><form name="search" action="http://mighty-citadel-5390.herokuapp.com/usersearch/results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>')
 	
 });
 
