@@ -73,6 +73,8 @@ app.get('/', function (request, response) {
  	response.header('Access-Control-Allow-Origin','*');
  	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
  
+ 	request.set('Content-Type', 'text/html');
+ 	request.send('<h1>lalala</h1>');
  });
 
 app.get('/fool', function(request, response) {
