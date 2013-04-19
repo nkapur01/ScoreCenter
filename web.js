@@ -61,21 +61,22 @@ app.get('/', function (request, response) {
  	response.header('Access-Control-Allow-Origin','*');
  	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
  	
- 	var string = '<!DOCTYPE html><html><head><title>User Search</title></head><body><form name="search" action="results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"></form></body></html>'
+ 	var string = '<form name="search" action="http://mighty-citadel-5390.herokuapp.com/results" method="post">Username: <input type="text" name="username"><input type="submit" value="Submit"> onclick= "<script>window.location.assign("http://mighty-citadel-5390.herokuapp.com/results")</script>"</form>'
  	
  	request.set('Content-Type', 'text/html');
  	request.send(string);
  	
  });
 
- app.post('/usersearch/results', function(request, response){
+ app.post('/results', function(request, response){
  	response.header('Access-Control-Allow-Origin','*');
  	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
  
- 	//db.collection('highscores', function(err, collection){
- 	//	collection.find({'username':username}).toArray(function(err, documents){
- 	request.set('Content-Type', 'text/html');
- 	request.send('<h1>lalala</h1>');
+ 	db.collection('highscores', function(err, collection){
+ 		collection.find({'username':username}).toArray(function(err, documents){
+ 		request.set('Content-Type', 'text/html');
+ 		request.send(documents);
+ 	});
  	
  });
 
