@@ -72,11 +72,14 @@ app.get('/', function (request, response) {
  	response.header('Access-Control-Allow-Origin','*');
  	request.header('Access-Control-Allow-Headers', 'X-Requested-With');
  
- 	db.collection('highscores', function(err, collection){
- 		collection.find({'username':username}).toArray(function(err, documents){
- 		request.set('Content-Type', 'text/html');
- 		request.send(documents);
- 	});
+ 	// db.collection('highscores', function(err, collection){
+//  		collection.find({'username':username}).toArray(function(err, documents){
+//  		request.set('Content-Type', 'text/html');
+//  		request.send(documents);
+//  	});
+
+request.set('Content-Type', 'text/html');
+request.send('<h1>hello</h1>');
  	
  });
 
